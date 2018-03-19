@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 填充的颜色 -->
+    <solid android:color="@color/White" />
+    <!-- padding：Button里面的文字与Button边界的间隔 -->
+    <padding
+        android:bottom="16dp"
+        android:left="16dp"
+        android:right="16dp"
+        android:top="16dp" />
+
+</shape>

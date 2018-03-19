@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.hema.animatorstudy">
+
+    <!-- 动态申请权限 -->
+
+
+    <!-- // android.permission-group.CAMERA 组 -->
+    <!-- 拍照 -->
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <!-- // android.permission-group.STORAGE 组 -->
+    <!-- SD卡 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!-- 创建文件 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+
+    <!-- 普通权限 -->
+
+
+    <!-- 网络权限 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+
+    <application
+        android:name="com.hema.baselibrary.base.app"
+        android:allowBackup="true"
+        android:icon="@mipmap/icon1"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ac.PhotoActivity" />
+        <activity android:name=".ac.AttributeActivity" />
+        <activity android:name=".ac.AdImageViewActivity" />
+        <activity android:name=".ac.TraditionActivity" />
+        <activity android:name=".ac.CustomActivity" />
+        <activity android:name=".ac.RxJavaActivity" />
+        <activity android:name=".rxjava_study.OneRxJavaActivity" />
+        <activity android:name=".rxjava_study.TwoRxJavaActivity" />
+        <activity android:name=".ac.GameActivity" />
+        <activity android:name=".game.GamePlaneActivity" />
+        <activity android:name=".appdownload.AppDownloadActivity" />
+        <activity android:name=".photostudy.PhotoSystemActivity" />
+
+        <service
+            android:name=".appdownload.DownloadService"
+            android:enabled="true"
+            android:exported="true"></service>
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.hema.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+    </application>
+
+</manifest>
