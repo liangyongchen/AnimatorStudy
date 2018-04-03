@@ -2,7 +2,7 @@
 ======
 ## 高仿QQ侧滑item空间
 #:2018.3.28
- ![](art/SideslipMenuLayout.gif)
+ ![](art/SideslipMenuLayout.gif)  ![](art/SideslipMenuLayout1.gif)
 ## 描述
 
 - SideslipMenuLayout类
