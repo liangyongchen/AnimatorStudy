@@ -128,8 +128,14 @@
 ## dispatchTouchEvent、onInterceptTouchEvent、onTouchEvent分发拦截事件处理
 #:2018.4.3
  ![](art/SideslipMenuLayout.gif)
+ 
+ Activity:
+ 
+ https://github.com/liangyongchen/AnimatorStudy/blob/master/app/src/main/java/com/hema/animatorstudy/ac/TouchEventActivity.java
 
-https://www.jianshu.com/p/fb84dceb1600
+dispatchTouchEvent、onInterceptTouchEvent、onTouchEvent分发拦截事件处理说明
+
+ https://www.jianshu.com/p/fb84dceb1600
 
 
 
