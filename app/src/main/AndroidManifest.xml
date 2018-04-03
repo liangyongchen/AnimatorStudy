@@ -48,6 +48,7 @@
         <activity android:name=".game.GamePlaneActivity" />
         <activity android:name=".appdownload.AppDownloadActivity" />
         <activity android:name=".photostudy.PhotoSystemActivity" />
+        <activity android:name=".ac.TouchEventActivity" />
 
         <service
             android:name=".appdownload.DownloadService"

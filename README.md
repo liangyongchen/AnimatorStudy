@@ -1,6 +1,7 @@
 自定义控件学习
 ======
-## 高仿QQ侧滑item空间:2018.3.28
+## 高仿QQ侧滑item空间
+#:2018.3.28
  ![](art/SideslipMenuLayout.gif)
 ## 描述
 
@@ -124,8 +125,11 @@
 >     }
 
 
+## dispatchTouchEvent、onInterceptTouchEvent、onTouchEvent分发拦截事件处理
+#:2018.4.3
+ ![](art/SideslipMenuLayout.gif)
 
-
+https://www.jianshu.com/p/fb84dceb1600
 
 
 

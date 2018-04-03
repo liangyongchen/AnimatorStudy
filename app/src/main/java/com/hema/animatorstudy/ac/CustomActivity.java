@@ -45,6 +45,11 @@ public class CustomActivity extends BaseActivity {
         m.setName("AdImageViewActivity");
         m.setTypeActivity("com.hema.animatorstudy.ac.AdImageViewActivity");
         data.add(m);
+        // TouchEventActivity
+        ActivityModel m1 = new ActivityModel();
+        m1.setName("TouchEventActivity");
+        m1.setTypeActivity("com.hema.animatorstudy.ac.TouchEventActivity");
+        data.add(m1);
     }
 
     @Override
