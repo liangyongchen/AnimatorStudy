@@ -129,7 +129,9 @@
 #:2018.4.3
  ![](art/SideslipMenuLayout.gif)
 
-https://www.jianshu.com/p/fb84dceb1600
+dispatchTouchEvent、onInterceptTouchEvent、onTouchEvent分发拦截事件处理说明
+
+ https://www.jianshu.com/p/fb84dceb1600
 
 
 
