@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 按下去显示的图片 -->
+    <item android:drawable="@drawable/shape_rect_r0_lightblack_padd10" android:state_pressed="true"></item>
+    <!-- 没按下去显示的图片 -->
+    <item android:drawable="@drawable/shape_rect_r0_black_padd10" android:state_pressed="false"></item>
+    <!-- 默认情况下显示的图片 -->
+    <item android:drawable="@drawable/shape_rect_r0_black_padd10"></item>
+
+</selector>

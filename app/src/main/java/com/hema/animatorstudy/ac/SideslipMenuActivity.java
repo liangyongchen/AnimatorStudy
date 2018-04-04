@@ -36,6 +36,8 @@ public class SideslipMenuActivity extends BaseActivity {
     @Override
     public void init(Bundle savedInstanceState) {
 
+        setTitle("侧滑控件");
+
     }
 
     List<String> data = new ArrayList<>();

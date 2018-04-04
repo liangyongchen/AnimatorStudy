@@ -65,7 +65,8 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity android:name=".ac.SideslipMenuActivity"></activity>
+        <activity android:name=".ac.SideslipMenuActivity" />
+        <activity android:name=".ac.ObjectAnimatorActivity"></activity>
     </application>
 
 </manifest>

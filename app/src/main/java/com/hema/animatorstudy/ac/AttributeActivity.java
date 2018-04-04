@@ -55,6 +55,12 @@ public class AttributeActivity extends BaseActivity {
         m.setTypeActivity("com.hema.animatorstudy.ac.SideslipMenuActivity");
         data.add(m);
 
+        // 侧滑属性控件
+        ActivityModel m1 = new ActivityModel();
+        m1.setName("ObjectAnimator动画讲解");
+        m1.setTypeActivity("com.hema.animatorstudy.ac.ObjectAnimatorActivity");
+        data.add(m1);
+
     }
 
 
