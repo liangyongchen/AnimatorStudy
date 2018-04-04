@@ -1,6 +1,6 @@
 自定义控件学习
 ======
-## 高仿QQ侧滑item空间
+## 高仿QQ侧滑item控件
 #:2018.3.28
  ![](art/SideslipMenuLayout.gif)  ![](art/SideslipMenuLayout1.gif)
 ## 描述
