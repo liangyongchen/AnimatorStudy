@@ -95,9 +95,17 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="3dp"
                 android:background="@drawable/selector_button"
-                android:text="组合动画"
+                android:text="组合1"
                 android:textColor="@color/White" />
 
+            <TextView
+                android:id="@+id/setGroupAnimator2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:background="@drawable/selector_button"
+                android:text="组合2"
+                android:textColor="@color/White" />
 
         </LinearLayout>
 

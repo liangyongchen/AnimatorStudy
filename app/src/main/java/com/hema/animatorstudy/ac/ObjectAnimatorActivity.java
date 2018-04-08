@@ -36,6 +36,8 @@ public class ObjectAnimatorActivity extends BaseActivity implements View.OnClick
     TextView mScaleY;
     @BindView(R.id.setGroupAnimator)
     TextView mSetGroupAnimator;
+    @BindView(R.id.setGroupAnimator2)
+    TextView mSetGroupAnimator2;
 
     @BindView(R.id.test)
     TextView mTest;
@@ -77,6 +79,7 @@ public class ObjectAnimatorActivity extends BaseActivity implements View.OnClick
         mScaleX.setOnClickListener(this);
         mScaleY.setOnClickListener(this);
         mSetGroupAnimator.setOnClickListener(this);
+        mSetGroupAnimator2.setOnClickListener(this);
         mOfFloat.setOnClickListener(this);
         mOfInt.setOnClickListener(this);
 
@@ -92,7 +95,7 @@ public class ObjectAnimatorActivity extends BaseActivity implements View.OnClick
                 // ofFloat(Object target, String propertyName, float... values)
                 .ofFloat(mTest, "alpha", 1f, 0f, 1f, 0.5f, 0f, 1f);
         anim.setDuration(3000);
-        setAnimatorListener(anim, "淡出淡出状态： alpha，取值范围在 [0,1] \n" + "ofFloat(mTest, \"alpha\", 1f, 0f, 1f, 0.5f, 0f,1f)");
+        setObjectAnimatorListener(anim, "淡出淡出状态： alpha，取值范围在 [0,1] \n" + "ofFloat(mTest, \"alpha\", 1f, 0f, 1f, 0.5f, 0f,1f)");
         anim.start();
 
     }
@@ -102,7 +105,7 @@ public class ObjectAnimatorActivity extends BaseActivity implements View.OnClick
                 // ofFloat(Object target, String propertyName, float... values)
                 .ofFloat(mTest, "rotation", 0f, 360f, -180f, 270f, 0f);
         anim.setDuration(3000);
-        setAnimatorListener(anim, "旋转状态： rotation ，取值范围在 [-n,n] \n" + "ofFloat(mTest, \"rotation\", 0f, 360f, -180f, 270f, 0f)");
+        setObjectAnimatorListener(anim, "旋转状态： rotation ，取值范围在 [-n,n] \n" + "ofFloat(mTest, \"rotation\", 0f, 360f, -180f, 270f, 0f)");
         anim.start();
     }
 
@@ -111,22 +114,22 @@ public class ObjectAnimatorActivity extends BaseActivity implements View.OnClick
                 // ofFloat(Object target, String propertyName, float... values)
                 .ofFloat(mTest, "translationX", 0f, 400f, -50f, 270f, -150f, 100f, 0f);
         anim.setDuration(3000);
-        setAnimatorListener(anim, "X 方向走直线运动： translationX ，取值范围在 [-n,n] \n" + "ofFloat(mTest, \"translationX\", 0f, 400f, -50f, 270f, -150f, 100f, 0f)");
+        setObjectAnimatorListener(anim, "X 方向走直线运动： translationX ，取值范围在 [-n,n] \n" + "ofFloat(mTest, \"translationX\", 0f, 400f, -50f, 270f, -150f, 100f, 0f)");
         anim.start();
     }
 
     private void translationY() {
-
         ObjectAnimator anim = ObjectAnimator
                 // ofFloat(Object target, String propertyName, float... values)
                 .ofFloat(mTest, "translationY", 0f, 400f, -50f, 270f, -150f, 100f, 0f);
         anim.setDuration(3000);
-        setAnimatorListener(anim, "Y 方向走直线运动： translationY ，取值范围在 [-n,n] \n" + "ofFloat(mTest, \"translationX\", 0f, 400f, -50f, 270f, -150f, 100f, 0f)");
+        setObjectAnimatorListener(anim, "Y 方向走直线运动： translationY ，取值范围在 [-n,n] \n" + "ofFloat(mTest, \"translationX\", 0f, 400f, -50f, 270f, -150f, 100f, 0f)");
         anim.start();
 
     }
 
     private void scale() {
+        InstructionString("把 X 和 Y 方向的动画一起播放，没有用到组合动画状态\n\n");
         scaleX();
         scaleY();
     }
@@ -136,7 +139,7 @@ public class ObjectAnimatorActivity extends BaseActivity implements View.OnClick
                 // ofFloat(Object target, String propertyName, float... values)
                 .ofFloat(mTest, "scaleX", 1f, 3f, 2f, 1f);
         anim.setDuration(3000);
-        setAnimatorListener(anim, " X 方向缩放比例： scale ，取值范围在 [-n,n] \n" + "ofFloat(mTest, \"scale\", 1f, 3f, 2f, 1f)");
+        setObjectAnimatorListener(anim, " X 方向缩放比例： scale ，取值范围在 [-n,n] \n" + "ofFloat(mTest, \"scale\", 1f, 3f, 2f, 1f)");
         anim.start();
     }
 
@@ -145,30 +148,73 @@ public class ObjectAnimatorActivity extends BaseActivity implements View.OnClick
                 // ofFloat(Object target, String propertyName, float... values)
                 .ofFloat(mTest, "scaleY", 1f, 3f, 2f, 1f);
         anim.setDuration(3000);
-        setAnimatorListener(anim, "Y 方向缩放比例： scale ，取值范围在 [-n,n] \n" + "ofFloat(mTest, \"scale\", 1f, 3f, 2f, 1f)");
+        setObjectAnimatorListener(anim, "Y 方向缩放比例： scale ，取值范围在 [-n,n] \n" + "ofFloat(mTest, \"scale\", 1f, 3f, 2f, 1f)");
         anim.start();
     }
 
     private void setGroupAnimator() {
+
+        // 组合动画说明：
+        InstructionString("实现组合动画功能主要需要借助AnimatorSet这个类，这个类提供了一个play()方法，如果我们向这个方法中传入一个Animator对象(ValueAnimator或ObjectAnimator)将会返回一个AnimatorSet.Builder的实例，AnimatorSet.Builder中包括以下四个方法：\n" +
+                "\n" +
+                "after(Animator anim)   将现有动画插入到传入的动画之后执行\n\n" +
+                "after(long delay)   将现有动画延迟指定毫秒后执行\n\n" +
+                "before(Animator anim)   将现有动画插入到传入的动画之前执行\n\n" +
+                "with(Animator anim)   将现有动画和传入的动画同时执行 \n\n");
+
         // 组合动画
 
         ObjectAnimator anim1 = ObjectAnimator
                 // ofFloat(Object target, String propertyName, float... values)
                 .ofFloat(mTest, "translationX", 0f, 400f, -50f, 270f, -150f, 100f, 0f);
-        setAnimatorListener(anim1, "X 方向走直线运动： translationX ，取值范围在 [-n,n] \n" + "ofFloat(mTest, \"translationX\", 0f, 400f, -50f, 270f, -150f, 100f, 0f)");
+        setObjectAnimatorListener(anim1, "X 方向走直线运动： translationX ，调用 AnimatorSet的play()方法");
 
         ObjectAnimator anim2 = ObjectAnimator
                 // ofFloat(Object target, String propertyName, float... values)
                 .ofFloat(mTest, "translationY", 0f, 400f, -50f, 270f, -150f, 100f, 0f);
-        setAnimatorListener(anim2, "Y 方向走直线运动： translationY ，取值范围在 [-n,n] \n" + "ofFloat(mTest, \"translationX\", 0f, 400f, -50f, 270f, -150f, 100f, 0f)");
+        setObjectAnimatorListener(anim2, "Y 方向走直线运动： translationY ，调用 AnimatorSet的 with()方法");
 
         ObjectAnimator anim3 = ObjectAnimator
                 // ofFloat(Object target, String propertyName, float... values)
                 .ofFloat(mTest, "rotation", 0f, 360f, -180f, 270f, 0f);
-        setAnimatorListener(anim3, "旋转状态： rotation ，取值范围在 [-n,n] \n" + "ofFloat(mTest, \"rotation\", 0f, 360f, -180f, 270f, 0f)");
+        setObjectAnimatorListener(anim3, "旋转状态： rotation ，调用 AnimatorSet的 after()方法");
 
         AnimatorSet animSet = new AnimatorSet();
         animSet.play(anim1).with(anim2).after(anim3);
+        animSet.setDuration(5000);
+        animSet.start();
+
+    }
+
+    private void setGroupAnimator2() {
+
+        // 组合动画说明：
+        InstructionString("实现组合动画功能主要需要借助AnimatorSet这个类，这个类提供了一个play()方法，如果我们向这个方法中传入一个Animator对象(ValueAnimator或ObjectAnimator)将会返回一个AnimatorSet.Builder的实例，AnimatorSet.Builder中包括以下四个方法：\n" +
+                "\n" +
+                "after(Animator anim)   将现有动画插入到传入的动画之后执行\n\n" +
+                "after(long delay)   将现有动画延迟指定毫秒后执行\n\n" +
+                "before(Animator anim)   将现有动画插入到传入的动画之前执行\n\n" +
+                "with(Animator anim)   将现有动画和传入的动画同时执行 \n\n");
+
+        // 组合动画
+
+        ObjectAnimator anim1 = ObjectAnimator
+                // ofFloat(Object target, String propertyName, float... values)
+                .ofFloat(mTest, "translationX", 0f, 400f, -50f, 270f, -150f, 100f, 0f);
+        setObjectAnimatorListener(anim1, "X 方向走直线运动： translationX ，调用 AnimatorSet的play()方法");
+
+        ObjectAnimator anim2 = ObjectAnimator
+                // ofFloat(Object target, String propertyName, float... values)
+                .ofFloat(mTest, "translationY", 0f, 400f, -50f, 270f, -150f, 100f, 0f);
+        setObjectAnimatorListener(anim2, "Y 方向走直线运动： translationY ，调用 AnimatorSet的 with()方法");
+
+        ObjectAnimator anim3 = ObjectAnimator
+                // ofFloat(Object target, String propertyName, float... values)
+                .ofFloat(mTest, "rotation", 0f, 360f, -180f, 270f, 0f);
+        setObjectAnimatorListener(anim3, "旋转状态： rotation ，调用 AnimatorSet的 with()方法");
+
+        AnimatorSet animSet = new AnimatorSet();
+        animSet.play(anim1).with(anim2).with(anim3);
         animSet.setDuration(5000);
         animSet.start();
 
@@ -178,28 +224,28 @@ public class ObjectAnimatorActivity extends BaseActivity implements View.OnClick
         ValueAnimator anim = ValueAnimator.ofFloat(0f, 1f);
         anim.setDuration(300);
         // 监听变化状态
-        setAnimatorListener(anim, "没有添加控件状态下测试ofInt");
+        setValueAnimatorListener(anim, "没有添加控件状态下测试ofInt");
         anim.start();
     }
 
     private void ofInt() {
         ValueAnimator anim = ValueAnimator.ofInt(0, 100);
         anim.setDuration(300);
-        setAnimatorListener(anim, "没有添加控件状态下测试 ofInt 方法");
+        setValueAnimatorListener(anim, "没有添加控件状态下测试 ofInt 方法");
         anim.start();
     }
 
     // endregion
 
     // region // 公用动画监听器
-    private void setAnimatorListener(ValueAnimator animator, String instruction) {
+    private void setValueAnimatorListener(ValueAnimator animator, String instruction) {
 
         animator.addListener(new AnimatorListenerAdapter() {
 
             @Override
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
-                mInstruction.setText(instruction);
+                InstructionString(instruction + "\n\n 默认是加减速插值器 \n\n");
             }
         });
 
@@ -213,7 +259,7 @@ public class ObjectAnimatorActivity extends BaseActivity implements View.OnClick
 
     }
 
-    private void setAnimatorListener(ObjectAnimator animator, String instruction) {
+    private void setObjectAnimatorListener(ObjectAnimator animator, String instruction) {
 
         animator.addListener(new AnimatorListenerAdapter() {
 
@@ -256,6 +302,13 @@ public class ObjectAnimatorActivity extends BaseActivity implements View.OnClick
 
     @Override
     public void onClick(View v) {
+
+        // 清空
+        uotString = new StringBuffer("");
+        outTest.setText("");
+        instructionString = new StringBuffer("");
+        mInstruction.setText("");
+
         switch (v.getId()) {
 
             case R.id.alpha:
@@ -290,6 +343,10 @@ public class ObjectAnimatorActivity extends BaseActivity implements View.OnClick
                 setGroupAnimator();
                 break;
 
+            case R.id.setGroupAnimator2:
+                setGroupAnimator2();
+                break;
+
             case R.id.ofFloat:
                 ofFloat();
                 break;
@@ -300,19 +357,8 @@ public class ObjectAnimatorActivity extends BaseActivity implements View.OnClick
 
         }
 
-        // 清空
-        uotString = new StringBuffer("");
-        outTest.setText("");
-        instructionString = new StringBuffer("");
-        mInstruction.setText("");
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
 
     // endregion
 
