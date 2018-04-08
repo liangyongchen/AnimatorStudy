@@ -157,10 +157,10 @@ public class ObjectAnimatorActivity extends BaseActivity implements View.OnClick
         // 组合动画说明：
         InstructionString("实现组合动画功能主要需要借助AnimatorSet这个类，这个类提供了一个play()方法，如果我们向这个方法中传入一个Animator对象(ValueAnimator或ObjectAnimator)将会返回一个AnimatorSet.Builder的实例，AnimatorSet.Builder中包括以下四个方法：\n" +
                 "\n" +
-                "after(Animator anim)   将现有动画插入到传入的动画之后执行\n\n" +
+                "after(Animator anim)   将调用该方法的所有动画执行完在执行其他动画\n\n" +
                 "after(long delay)   将现有动画延迟指定毫秒后执行\n\n" +
-                "before(Animator anim)   将现有动画插入到传入的动画之前执行\n\n" +
-                "with(Animator anim)   将现有动画和传入的动画同时执行 \n\n");
+                "before(Animator anim)  将不是调用该方法的所有动画执行完再执行该方法的所有动画\n\n" +
+                "with(Animator anim)   将该方法的所有动画和play()同步执行 \n\n");
 
         // 组合动画
 
@@ -179,8 +179,13 @@ public class ObjectAnimatorActivity extends BaseActivity implements View.OnClick
                 .ofFloat(mTest, "rotation", 0f, 360f, -180f, 270f, 0f);
         setObjectAnimatorListener(anim3, "旋转状态： rotation ，调用 AnimatorSet的 after()方法");
 
+        ObjectAnimator anim4 = ObjectAnimator
+                // ofFloat(Object target, String propertyName, float... values)
+                .ofFloat(mTest, "scaleX", 1f, 3f, 2f, 1f);
+        setObjectAnimatorListener(anim4, " X 方向缩放比例： scale ，调用 AnimatorSet的 after()方法");
+
         AnimatorSet animSet = new AnimatorSet();
-        animSet.play(anim1).with(anim2).after(anim3);
+        animSet.play(anim1).with(anim2).after(anim3).before(anim4);
         animSet.setDuration(5000);
         animSet.start();
 
