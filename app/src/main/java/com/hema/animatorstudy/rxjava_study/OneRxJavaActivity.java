@@ -66,6 +66,7 @@ public class OneRxJavaActivity extends BaseActivity {
         @Override
         public void onCompleted() {
             Log.d("Rx", "Complete!");
+            mySubscriber.unsubscribe();
         }
 
         @Override
